@@ -1,18 +1,44 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
+import { User } from '../entities/user.entity';
 
 @Injectable()
 export class UserService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+  ) { }
+  
+  async create(data: CreateUserInput) {
+    const user = this.userRepository.create(data);
+
+    var valid = await this.userRepository.createQueryBuilder('user')
+    .where('user.email = :email', { email: data.email })
+    .getOne();
+
+  if (valid) {
+    throw new BadRequestException('Esse E-mail já está sendo usado')
   }
 
-  findAll() {
-    return `This action returns all user`;
+  const userSaved = await this.userRepository.save(user);
+
+  if (!userSaved) {
+    throw new InternalServerErrorException('Erro ao criar o usuário.');
+  }
+  return await this.findOne(userSaved.id);
   }
 
-  findOne(id: number) {
+  async findAll(): Promise<User[]> {
+    const result = await this.userRepository.find()
+
+  return result;
+  }
+
+  findOne(id: string) {
     return `This action returns a #${id} user`;
   }
 
