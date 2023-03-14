@@ -38,8 +38,19 @@ export class UserService {
   return result;
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} user`;
+  async find(id: string) {
+    const result = await this.findOne(id)
+
+  return result;
+  }
+
+  async findOne(id: string) {
+    const entity = await this.userRepository.createQueryBuilder('')
+
+  if (!entity) {
+    throw new BadRequestException('Não encontrado');
+  }
+  return entity;
   }
 
   update(id: number, updateUserInput: UpdateUserInput) {

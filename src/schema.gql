@@ -7,8 +7,9 @@ type User {
 }
 
 type Query {
-  users: String!
-  user(id: Int!): User!
+  """Return All Users"""
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
@@ -19,9 +20,15 @@ type Mutation {
 
 input CreateUserInput {
   name: String!
+  profile: String!
+  phone: String!
+  email: String!
 }
 
 input UpdateUserInput {
   name: String
+  profile: String
+  phone: String
+  email: String
   id: Int!
 }
