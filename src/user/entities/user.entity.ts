@@ -1,7 +1,8 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
-import { Column, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {  Field, ID, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
+@Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => ID)
@@ -28,3 +29,4 @@ export class User {
   @CreateDateColumn()
   updatedAt?: Date;
 }
+

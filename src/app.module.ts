@@ -13,10 +13,10 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot({
       
         type: "mysql",
-          host: "localhost",
+          host: "172.17.0.2",
           port: 3306,
           username: "develop",
-          password: "",
+          password: "mypassword",
           database: "nest_api",
           entities: ["dist/**/*.entity{.ts,.js}"],
           synchronize: true
