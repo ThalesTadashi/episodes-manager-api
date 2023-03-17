@@ -5,6 +5,7 @@ import { CreateUserInput } from '../dto/create-user.input';
 import { UpdateUserInput } from '../dto/update-user.input';
 import { User } from '../entities/user.entity';
 
+
 @Injectable()
 export class UserService {
 
@@ -16,13 +17,13 @@ export class UserService {
   async create(data: CreateUserInput) {
     const user = this.userRepository.create(data);
 
-    var valid = await this.userRepository.createQueryBuilder('user')
-    .where('user.email = :email', { email: data.email })
-    .getOne();
+    // var valid = await this.userRepository.createQueryBuilder('user')
+    // .where('user.email = :email', { email: data.email })
+    // .getOne();
 
-  if (valid) {
-    throw new BadRequestException('Esse E-mail já está sendo usado')
-  }
+  // if (valid) {
+  //   throw new BadRequestException('Esse E-mail já está sendo usado')
+  // }
 
   const userSaved = await this.userRepository.save(user);
 

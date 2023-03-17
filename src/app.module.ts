@@ -9,25 +9,17 @@ import { UserResolver } from './user/resolver/user.resolver';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 
-@Module({
+@Module(
+  {
   imports: [
-    TypeOrmModule.forRoot({
-      type: "mysql",
-      host: "localhost",
-      port: 3306,
-      username: "root",
-      password: "mypassword",
-      database: "nest_api",
-      entities: ["dist/**/*.entity{.ts,.js}"],
-      synchronize: true
+    ConfigModule.forRoot({
+      isGlobal: true
     }),
+    TypeOrmModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }), 
-    ConfigModule.forRoot({
-      isGlobal: true
-    }),
     UserModule,
   ],
     controllers: [],

@@ -20,15 +20,9 @@ type Mutation {
 
 input CreateUserInput {
   name: String!
-  profile: String!
-  phone: String!
-  email: String!
 }
 
 input UpdateUserInput {
   name: String
-  profile: String
-  phone: String
-  email: String
   id: Int!
 }
