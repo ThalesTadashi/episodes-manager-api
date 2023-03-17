@@ -11,21 +11,21 @@ export class User {
   @Column({ type: 'varchar', length: 200, nullable: true })
   name?: string;
 
-  @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
-  profile?: string
+  // @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
+  // profile?: string
 
-  @Column({ type: 'varchar', length: 20, nullable: true })
-  phone?: string;
+  // @Column({ type: 'varchar', length: 20, nullable: true })
+  // phone?: string;
 
-  @Column()
-  email?: string;
+  // @Column()
+  // email?: string;
 
-  @CreateDateColumn()
-  createdAt?: Date;
+  // @CreateDateColumn()
+  // createdAt?: Date;
 
-  @DeleteDateColumn()
-  deletedAt?: Date;
+  // @DeleteDateColumn()
+  // deletedAt?: Date;
 
-  @CreateDateColumn()
-  updatedAt?: Date;
+  // @CreateDateColumn()
+  // updatedAt?: Date;
 }
