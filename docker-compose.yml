@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'mypassword'
+      MYSQL_ROOT_PASSWORD: 'mypassword'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./data:/var/lib/mysql
+
+  adminer:
+        container_name: adminer
+        image: adminer:latest
+        environment: 
+            ADMINER_DEFAULT_SERVER: mysql
+            ADMINER_DESIGN: galkaev
+        ports: 
+          - 8080:8080
