@@ -8,6 +8,7 @@ export class User {
   @Field(() => ID)
   id: string;
 
+  @Field()
   @Column({ type: 'varchar', length: 200, nullable: true })
   name?: string;
 
@@ -17,8 +18,9 @@ export class User {
   // @Column({ type: 'varchar', length: 20, nullable: true })
   // phone?: string;
 
-  // @Column()
-  // email?: string;
+  @Field()
+  @Column()
+  email?: string;
 
   // @CreateDateColumn()
   // createdAt?: Date;

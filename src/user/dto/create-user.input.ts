@@ -18,8 +18,8 @@ export class CreateUserInput {
     // @IsNotEmpty({ message: 'O telefone é obrigatório!' })
     // phone: string;
 
-    // @Field()
-    // @IsEmail()
-    // @IsNotEmpty({ message: 'O email é obrigatório!' })
-    // email: string;
+    @Field()
+    @IsEmail()
+    @IsNotEmpty({ message: 'O email é obrigatório!' })
+    email: string;
 }
