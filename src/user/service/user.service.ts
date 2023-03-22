@@ -17,20 +17,20 @@ export class UserService {
   async create(data: CreateUserInput) {
     const user = this.userRepository.create(data);
 
-    // var valid = await this.userRepository.createQueryBuilder('user')
-    // .where('user.email = :email', { email: data.email })
-    // .getOne();
+    var valid = await this.userRepository.createQueryBuilder('user')
+    .where('user.email = :email', { email: data.email })
+    .getOne();
 
-  // if (valid) {
-  //   throw new BadRequestException('Esse E-mail já está sendo usado')
-  // }
+  if (valid) {
+    throw new BadRequestException('Esse E-mail já está sendo usado')
+  }
 
   const userSaved = await this.userRepository.save(user);
 
   if (!userSaved) {
     throw new InternalServerErrorException('Erro ao criar o usuário.');
   }
-  return await this.findOne(userSaved.id);
+  return userSaved
   }
 
   async findAll(): Promise<User[]> {
