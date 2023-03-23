@@ -12,22 +12,27 @@ export class User {
   @Column({ type: 'varchar', length: 200, nullable: true })
   name?: string;
 
-  // @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
-  // profile?: string
+  @Field()
+  @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
+  profile?: string
 
-  // @Column({ type: 'varchar', length: 20, nullable: true })
-  // phone?: string;
+  @Field()
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  phone?: string;
 
   @Field()
   @Column()
   email?: string;
 
-  // @CreateDateColumn()
-  // createdAt?: Date;
+  @Field()
+  @CreateDateColumn()
+  createdAt?: Date;
 
-  // @DeleteDateColumn()
-  // deletedAt?: Date;
+  @Field()
+  @DeleteDateColumn({nullable: true })
+  deletedAt?: Date;
 
-  // @CreateDateColumn()
-  // updatedAt?: Date;
+  @Field()
+  @CreateDateColumn()
+  updatedAt?: Date;
 }

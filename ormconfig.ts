@@ -1,7 +1,7 @@
 import { User } from "src/user/entities/user.entity"
-import { DataSource } from "typeorm"
+import { DataSource, DataSourceOptions } from "typeorm"
 
-const AppDataSource = new DataSource({
+export const dataSourceOptions: DataSourceOptions = {
     type: "mysql",
     host: "localhost",
     port: 3306,
@@ -10,6 +10,4 @@ const AppDataSource = new DataSource({
     database: "nest_api",
     entities: [User],
     synchronize: true
-})
-
-AppDataSource.initialize()
+}

@@ -5,8 +5,18 @@
 type User {
   id: ID!
   name: String!
+  profile: String!
+  phone: String!
   email: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  updatedAt: DateTime!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Query {
   """Return All Users"""
@@ -15,18 +25,23 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
+  """Create User"""
+  createUser(data: CreateUserInput!): User!
+  updateUser(data: UpdateUserInput!): User!
+  removeUser(id: String!): User!
 }
 
 input CreateUserInput {
   name: String!
+  profile: String!
+  phone: String!
   email: String!
 }
 
 input UpdateUserInput {
   name: String
+  profile: String
+  phone: String
   email: String
-  id: Int!
+  id: String!
 }
