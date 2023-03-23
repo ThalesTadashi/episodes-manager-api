@@ -8,30 +8,29 @@ import { UpdateUserInput } from '../dto/update-user.input';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Mutation(() => User)
-  async createUser(@Args('createUserInput') data: CreateUserInput) {
-  
+  @Mutation(() => User,{ name: 'createUser', description: 'Create User' })
+  async createUser(@Args('data') data: CreateUserInput) {
         return await this.userService.create(data);
   }
 
   @Query(() => [User], { name: 'users', description: 'Return All Users' })
   async users(): Promise<User[]> {
-      const users = await this.userService.findAll();
+      const users = await this.userService.findAllUsers();
       return users;
   }
 
   @Query(() => User, { name: 'user' })
   findOne(@Args('id', { type: () => String }) id: string) {
-    return this.userService.findOne(id);
+    return this.userService.findUserById(id);
   }
 
   @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.userService.update(updateUserInput.id, updateUserInput);
+  updateUser(@Args('data') data: UpdateUserInput) {
+    return this.userService.updateUser(data.id, data);
   }
 
   @Mutation(() => User)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.remove(id);
+  removeUser(@Args('id', { type: () => String }) id: string) {
+    return this.userService.deleteUser(id);
   }
 }
