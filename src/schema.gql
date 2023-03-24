@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Movie {
+  id: ID!
+  title: String!
+  releaseYear: Float!
+  director: String!
+  rating: Float!
+  description: String!
+}
+
 type User {
   id: ID!
   name: String!
@@ -22,13 +31,20 @@ type Query {
   """Return All Users"""
   users: [User!]!
   user(id: String!): User!
+
+  """Return All Movies"""
+  movies: [Movie!]!
+  movie(id: String!): Movie!
 }
 
 type Mutation {
   """Create User"""
   createUser(data: CreateUserInput!): User!
-  updateUser(data: UpdateUserInput!): User!
-  removeUser(id: String!): User!
+  updateUser(data: UpdateMovieInput!): Movie!
+  removeUser(id: String!): Movie!
+
+  """Create Movie"""
+  createMovie(data: CreateMovieInput!): Movie!
 }
 
 input CreateUserInput {
@@ -38,10 +54,19 @@ input CreateUserInput {
   email: String!
 }
 
-input UpdateUserInput {
-  name: String
-  profile: String
-  phone: String
-  email: String
+input UpdateMovieInput {
+  title: String
+  releaseYear: Float
+  director: String
+  rating: Float
+  description: String
   id: String!
+}
+
+input CreateMovieInput {
+  title: String!
+  releaseYear: Float!
+  director: String!
+  rating: Float
+  description: String!
 }
