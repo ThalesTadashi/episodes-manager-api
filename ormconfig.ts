@@ -1,5 +1,6 @@
+import { Movie } from "src/movies/entities/movie.entity"
 import { User } from "src/user/entities/user.entity"
-import { DataSource, DataSourceOptions } from "typeorm"
+import { DataSourceOptions } from "typeorm"
 
 export const dataSourceOptions: DataSourceOptions = {
     type: "mysql",
@@ -8,6 +9,6 @@ export const dataSourceOptions: DataSourceOptions = {
     username: "root",
     password: "mypassword",
     database: "nest_api",
-    entities: [User],
+    entities: [User, Movie],
     synchronize: true
 }
