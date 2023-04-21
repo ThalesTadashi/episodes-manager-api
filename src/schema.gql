@@ -8,6 +8,7 @@ type Movie {
   releaseYear: Float!
   director: String!
   rating: Float!
+  colorPref: String!
   description: String!
 }
 
