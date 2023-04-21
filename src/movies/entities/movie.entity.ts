@@ -27,6 +27,10 @@ export class Movie {
   rating?: number;
 
   @Field()
+  @Column({ nullable: true })
+  colorPref?: string;
+
+  @Field()
   @Column()
   description?: string;
 }
